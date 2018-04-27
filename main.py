@@ -61,16 +61,18 @@ def main():
 
             pattern = re.compile(r'\W')
 
-            title = re.sub(pattern, '', title)
-            print(title)
+            real_title = re.sub(pattern, '', title)
+            print(real_title)
 
-            if len(title) > 20:
-                title = title[0:20]
+            if len(real_title) > 20:
+                title_name = real_title[0:20]
+            else:
+                title_name = real_title
 
             #写入文件
-            with open("{}/{}.txt".format(path,title),'w',encoding='utf-8') as wf:
+            with open("{}/{}.txt".format(path,title_name),'w',encoding='utf-8') as wf:
 
-                wf.write(title+"\n")
+                wf.write(real_title+"\n")
 
                 for content in contents:
 
