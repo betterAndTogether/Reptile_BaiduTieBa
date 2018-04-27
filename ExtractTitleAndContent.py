@@ -56,7 +56,7 @@ def get_sum_page(page):
     li_pattern = re.compile(r'<li class="l_reply_num".*</li>')
     li_result = li_pattern.findall(page)
 
-    if len(li_result):
+    if len(li_result)==0:
         return 0
     span_pattern = re.compile(r'<span class="red">(.*?)</span>')
     result = span_pattern.findall(li_result[0])
