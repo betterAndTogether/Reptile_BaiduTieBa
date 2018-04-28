@@ -23,6 +23,7 @@ class BDTB:
         return response.text
 
 
+
 #根据网页page获取标题
 def getTitle(bs):
 
@@ -43,7 +44,6 @@ def getContent(bs):
     for div in content_div:
 
         contents.append(div.get_text().strip())
-
 
     return contents
 

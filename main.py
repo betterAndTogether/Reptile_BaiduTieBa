@@ -17,7 +17,8 @@ def mkdir(path):
 def get_TBBaseUrls():
 
     TBBaseUrl = []
-    sca_page_num = []
+    start_page_num = []
+    end_page_num = []
 
     with open("./TBUrl.txt",'r',encoding="utf-8") as  f:
 
@@ -28,30 +29,31 @@ def get_TBBaseUrls():
             line_arr = line.strip().split(',')
 
             TBBaseUrl.append(line_arr[0])
-            sca_page_num.append(int(line_arr[1]))
+            start_page_num.append(int(line_arr[1]))
+            end_page_num.append(int(line_arr[2]))
+
 
             line = f.readline()
 
-    return TBBaseUrl,sca_page_num
+    return TBBaseUrl,start_page_num,end_page_num
 
 
 def main():
 
-    TBBaseUrls,sca_page_num = get_TBBaseUrls()
+    TBBaseUrls,start_page_num,end_page_num = get_TBBaseUrls()
 
     for i in range(len(TBBaseUrls)):
 
         TbaseUrls = []
 
-        for j in range(sca_page_num[i]):
+        for j in range(end_page_num[i] - start_page_num[i]):
 
             #获取该贴吧的所有贴的地址
             page_num = j * 50
-            TbaseUrls.extend(GetTUrl.getTUrl(TBBaseUrls[i],page_num))
-
+            TbaseUrls.extend(GetTUrl.getTUrl(TBBaseUrls[i],start_page_num[i]+page_num))
 
         #生成一个贴吧的文件夹
-        path = "./Data/"+str(i)
+        path = "./Data/"+str(2018 - i)
         mkdir(path)
 
         #根据每个贴，获取器title,和contents
